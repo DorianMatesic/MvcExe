@@ -18645,6 +18645,16 @@
   "RootNamespace": "MvcExe",
   "Documents": [
     {
+      "FilePath": "c:\\Users\\Dorian\\Documents\\dotnet\\lasttry\\MvcExe\\Views\\Projects\\Create.cshtml",
+      "TargetPath": "Views\\Projects\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Dorian\\Documents\\dotnet\\lasttry\\MvcExe\\Views\\Projects\\Edit.cshtml",
+      "TargetPath": "Views\\Projects\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Dorian\\Documents\\dotnet\\lasttry\\MvcExe\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
@@ -18660,8 +18670,38 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Dorian\\Documents\\dotnet\\lasttry\\MvcExe\\Views\\Projects\\Index.cshtml",
+      "TargetPath": "Views\\Projects\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Dorian\\Documents\\dotnet\\lasttry\\MvcExe\\Views\\Subjects\\Edit.cshtml",
+      "TargetPath": "Views\\Subjects\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Dorian\\Documents\\dotnet\\lasttry\\MvcExe\\Views\\Subjects\\Index.cshtml",
+      "TargetPath": "Views\\Subjects\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Dorian\\Documents\\dotnet\\lasttry\\MvcExe\\Views\\Projects\\Details.cshtml",
+      "TargetPath": "Views\\Projects\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Dorian\\Documents\\dotnet\\lasttry\\MvcExe\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Dorian\\Documents\\dotnet\\lasttry\\MvcExe\\Views\\Subjects\\Delete.cshtml",
+      "TargetPath": "Views\\Subjects\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Dorian\\Documents\\dotnet\\lasttry\\MvcExe\\Views\\Subjects\\Create.cshtml",
+      "TargetPath": "Views\\Subjects\\Create.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -18670,8 +18710,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Dorian\\Documents\\dotnet\\lasttry\\MvcExe\\Views\\Projects\\Delete.cshtml",
+      "TargetPath": "Views\\Projects\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Dorian\\Documents\\dotnet\\lasttry\\MvcExe\\Areas\\Identity\\Pages\\_ViewStart.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Dorian\\Documents\\dotnet\\lasttry\\MvcExe\\Views\\Subjects\\Details.cshtml",
+      "TargetPath": "Views\\Subjects\\Details.cshtml",
       "FileKind": "mvc"
     },
     {

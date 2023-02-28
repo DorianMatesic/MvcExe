@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-MvcExe-abc9bfd7-22ce-413e-8bd8-9fa7ffe6f6f0</UserSecretsId>
   </PropertyGroup>
