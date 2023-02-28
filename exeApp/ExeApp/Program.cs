@@ -2,6 +2,7 @@ global using Microsoft.AspNetCore.Identity;
 global using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using ExeApp.Data;
+using ExeApp.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,9 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IProjectsService, ProjectsService>();
+builder.Services.AddScoped<ISubjectsServices, SubjectsService>();
 
 var app = builder.Build();
 

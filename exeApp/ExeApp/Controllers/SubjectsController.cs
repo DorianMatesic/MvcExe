@@ -13,12 +13,12 @@ namespace ExeApp.Controllers
     [Authorize]
     public class SubjectsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ISubjectsServices _subjectsServices;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public SubjectsController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        public SubjectsController(ISubjectsServices subjectsServices, UserManager<IdentityUser> userManager)
         {
-            _context = context;
+            _subjectsServices = subjectsServices;
             _userManager = userManager;
         }
 
@@ -26,38 +26,36 @@ namespace ExeApp.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Subjects.Include(s => s.Projects).ToListAsync());
+            return View(await _subjectsServices.AllSubjects());
+
         }
 
         public async Task<IActionResult> Racunarstvo()
         {
-            var applicationDbContext = _context.Subjects.Include(s => s.Projects).Where(s => s.Department == "Racunarstvo");
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _subjectsServices.Racunarstvo());
         }
 
         public async Task<IActionResult> Mehatronika()
         {
-            var applicationDbContext = _context.Subjects.Include(s => s.Projects).Where(s => s.Department == "Mehatronika");
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _subjectsServices.Mehatronika());
+
         }
 
         // GET: Subjects/Details/5
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Subjects == null)
+            if (id == null) return NotFound();
+
+            Subject? subject;
+            if ((subject = await _subjectsServices.Get(id)) != null)
+            {
+                return View(subject);
+            }
+            else
             {
                 return NotFound();
             }
-
-            var subject = await _context.Subjects
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (subject == null)
-            {
-                return NotFound();
-            }
-
-            return View(subject);
         }
 
         // GET: Subjects/Create
@@ -77,83 +75,65 @@ namespace ExeApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(subject);
-                await _context.SaveChangesAsync();
+                await _subjectsServices.Insert(subject);
                 return RedirectToAction(nameof(Index));
             }
             return View(subject);
+
         }
 
         // GET: Subjects/Edit/5
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Subjects == null)
+            if (id == null) return NotFound();
+
+            Subject? subject;
+            if ((subject = await _subjectsServices.Get(id)) != null)
+            {
+                return View(subject);
+            }
+            else
             {
                 return NotFound();
             }
 
-            var subject = await _context.Subjects.FindAsync(id);
-            if (subject == null)
-            {
-                return NotFound();
-            }
-            return View(subject);
         }
 
-        // POST: Subjects/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Department,Semester")] Subject subject)
         {
-            if (id != subject.Id)
-            {
-                return NotFound();
-            }
+            if (id != subject.Id) return NotFound();
 
             if (ModelState.IsValid)
             {
-                try
+                if (await _subjectsServices.Update(subject) == true)
                 {
-                    _context.Update(subject);
-                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!SubjectExists(subject.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
             }
             return View(subject);
+
         }
 
         // GET: Subjects/Delete/5
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Subjects == null)
+            if (id == null) return NotFound();
+
+            Subject? subject;
+            if ((subject = await _subjectsServices.Get(id)) != null)
+            {
+                return View(subject);
+            }
+            else
             {
                 return NotFound();
             }
 
-            var subject = await _context.Subjects
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (subject == null)
-            {
-                return NotFound();
-            }
-
-            return View(subject);
         }
 
         // POST: Subjects/Delete/5
@@ -162,23 +142,10 @@ namespace ExeApp.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Subjects == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Subject'  is null.");
-            }
-            var subject = await _context.Subjects.FindAsync(id);
-            if (subject != null)
-            {
-                _context.Subjects.Remove(subject);
-            }
-            
-            await _context.SaveChangesAsync();
+            await _subjectsServices.Delete(id);
             return RedirectToAction(nameof(Index));
+
         }
-        [Authorize(Roles = "Admin")]
-        private bool SubjectExists(int id)
-        {
-          return _context.Subjects.Any(e => e.Id == id);
-        }
+
     }
 }
