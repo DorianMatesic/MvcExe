@@ -1,0 +1,19 @@
+{
+    "sqltools.connections": [
+        {
+            "mssqlOptions": {
+                "appName": "SQLTools",
+                "useUTC": true,
+                "encrypt": true
+            },
+            "previewLimit": 50,
+            "server": "sql.vub.zone",
+            "port": 14330,
+            "driver": "MSSQL",
+            "name": "VUB",
+            "database": "exeappdm",
+            "username": "sa",
+            "password": "VUBserver2020"
+        }
+    ]
+}

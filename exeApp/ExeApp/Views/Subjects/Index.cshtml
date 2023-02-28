@@ -1,0 +1,19 @@
+@model IEnumerable<ExeApp.Models.Subject>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    @if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <a asp-action="Create">Create New</a>
+    }
+    
+</p>
+
+<div>
+    <partial name="_SubjectsTable" model="Model" />
+</div>

@@ -1,0 +1,14 @@
+@model IEnumerable<ExeApp.Models.Project>
+
+@{
+    ViewData["Title"] = "My Projects";
+}
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div>
+    <partial name="_ProjectsTable" model="Model" />
+</div>
